@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.Arrays;
+import java.util.List;
 
 import edu.ucsd.cse110.lab5_room.model.DummyPerson;
 import edu.ucsd.cse110.lab5_room.model.IPerson;
+import edu.ucsd.cse110.lab5_room.model.db.AppDatabase;
 
 public class MainActivity extends AppCompatActivity {
     protected RecyclerView personsRecyclerView;
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(R.string.app_title);
+
+        AppDatabase db = AppDatabase.singleton(getApplicationContext());
+        List<? extends IPerson> persons = db.personsWithNotesDao().getAll();
+
+
 
         personsRecyclerView = findViewById(R.id.persons_view);
 
