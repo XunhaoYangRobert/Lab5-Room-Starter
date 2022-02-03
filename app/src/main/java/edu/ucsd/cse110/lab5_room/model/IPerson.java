@@ -1,6 +1,8 @@
 package edu.ucsd.cse110.lab5_room.model;
 
+import java.util.List;
+
 public interface IPerson {
-    String getName();
-    String[] getNotes();
+    public abstract String getName();
+    public abstract List<String> getNotes();
 }

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import java.util.Arrays;
+
 import edu.ucsd.cse110.lab5_room.model.DummyPerson;
 import edu.ucsd.cse110.lab5_room.model.IPerson;
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         personsLayoutManager = new LinearLayoutManager(this);
         personsRecyclerView.setLayoutManager(personsLayoutManager);
 
-        personsViewAdapter = new PersonsViewAdapter(data);
+        personsViewAdapter = new PersonsViewAdapter(Arrays.asList(data));
         personsRecyclerView.setAdapter(personsViewAdapter);
     }
 }

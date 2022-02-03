@@ -10,12 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import edu.ucsd.cse110.lab5_room.model.IPerson;
 
 public class PersonsViewAdapter extends RecyclerView.Adapter<PersonsViewAdapter.ViewHolder> {
-    private final IPerson[] persons;
+    private final List<? extends IPerson> persons;
 
-    public PersonsViewAdapter(IPerson[] persons) {
+    public PersonsViewAdapter( List<? extends IPerson> persons) {
         super();
         this.persons = persons;
     }
@@ -32,12 +34,12 @@ public class PersonsViewAdapter extends RecyclerView.Adapter<PersonsViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PersonsViewAdapter.ViewHolder holder, int position) {
-        holder.setPerson(persons[position]);
+        holder.setPerson(persons.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return this.persons.length;
+        return this.persons.size();
     }
 
     public static class ViewHolder
@@ -62,7 +64,7 @@ public class PersonsViewAdapter extends RecyclerView.Adapter<PersonsViewAdapter.
             Context context = view.getContext();
             Intent intent = new Intent(context, PersonDetailActivity.class);
             intent.putExtra("person_name", this.person.getName());
-            intent.putExtra("person_notes", this.person.getNotes());
+            intent.putExtra("person_notes", this.person.getNotes().toArray(new String[0]));
             context.startActivity(intent);
         }
     }
